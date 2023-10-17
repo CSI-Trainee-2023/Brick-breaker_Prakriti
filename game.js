@@ -118,6 +118,7 @@ function resetBall(){
     ball.y = paddle.y - BALL_RADIUS;
     ball.dx = 3 * (Math.random()*2 - 1);
     ball.dy = -3;
+    LIFE_LOST.play();
 }
 
 function ballPaddleCollision() {
