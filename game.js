@@ -6,7 +6,6 @@ const PADDLE_MARGIN_BOTTOM = 50;
 const BALL_RADIUS = 8;
 const BACKGROUND = new Image;
 BACKGROUND.src = "./bg2.jpg";
-
 let leftArrow = false
 let rightArrow = false
 let LIFE = 3;
@@ -14,21 +13,19 @@ let SCORE = 0;
 let SCORE_UNIT = 10;
 let LEVEL = 1;
 let MAX_LEVEL = 3;
-let SCORE_IMG = new Image();
-let LEVEL_IMG = new Image();
-let LIFE_IMG = new Image();
 let GAME_OVER = false;
 let BRICK_HIT = new Audio();
 let PADDLE_HIT = new Audio();
 let LIFE_LOST = new Audio();
 let WALL_COLLISION = new Audio();
 let WIN_SOUND = new Audio();
-
+//Adding sounds to the game
 BRICK_HIT.src = "./sounds/brick_hit.mp3";
 PADDLE_HIT.src = "./sounds/paddle_hit.mp3";
 LIFE_LOST.src = "./sounds/life_lost.mp3";
 WALL_COLLISION.src = "./sounds/wall_collision.mp3";
 WIN_SOUND.src = "./sounds/win_sound.mp3";
+
 
 // Line width
 ctx.lineWidth = 3;
