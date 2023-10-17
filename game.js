@@ -5,11 +5,14 @@ const PADDLE_HEIGHT = 20;
 const PADDLE_MARGIN_BOTTOM = 50;
 const BALL_RADIUS = 8;
 const BACKGROUND = new Image;
+//const NO_OF_HIGH_SCORES = 10;
+//const HIGH_SCORES = 'highScores';
 BACKGROUND.src = "./bg2.jpg";
 let leftArrow = false
 let rightArrow = false
 let LIFE = 3;
 let SCORE = 0;
+let HIGHSCORE=0;
 let SCORE_UNIT = 10;
 let LEVEL = 1;
 let MAX_LEVEL = 3;
@@ -74,7 +77,7 @@ const ball = {
     x : cvs.width/2,
     y : paddle.y - BALL_RADIUS,
     radius : BALL_RADIUS,
-    speed : 4,
+    speed : 6,
     dx : 3 * (Math.random()*2 - 1),
     dy : -3
 }
@@ -200,18 +203,29 @@ function ballBrickCollision(){
 
 function showGamePoints(text, textX, textY){
     ctx.fillStyle = "purple";
-    ctx.font = "25px Germania One";
+    ctx.font = "20px Germania One";
     ctx.fillText(text, textX, textY);
 
 }
+/*function checkHighScore(score) {
+    const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
+    const lowestScore = highScores[NO_OF_HIGH_SCORES-1]?.score ?? 0;
+    
+    if (score > lowestScore) {
+      highScores(score, highScores); // TODO
+      highScores(); // TODO
+    }
+  }*/
 
 function gameOver(){
     if(LIFE < 0){
         GAME_OVER = true;
         showGamePoints("Game Over", cvs.width/2 - 40, cvs.height/2); 
-        showGamePoints("Refresh to Play Again!", cvs.width/2 - 100, cvs.height/2 + 30); 
+        showGamePoints("Refresh to Play Again!", cvs.width/2 - 90, cvs.height/2 + 30); 
     }
+    // checkHighScore(account.score);
 }
+
 
 function levelUp(){
     let isLevelDone = true;
@@ -241,9 +255,10 @@ function draw(){
     drawPaddle();
     drawBall();
     drawBricks();
-    showGamePoints("Score:" + SCORE, 35, 25);
-    showGamePoints("Life:" + LIFE, cvs.width-85, 25);
-    showGamePoints("Level:" + LEVEL, cvs.width/2 - 40, 25);  
+    showGamePoints("Score:" + SCORE, 15, 25);
+    showGamePoints("Life:" + LIFE, cvs.width-45,25);
+    showGamePoints("Level:" + LEVEL, cvs.width-130, 25);
+    showGamePoints("High Score:" + HIGHSCORE, cvs.width/2-70, 25);
 }
 
 function update(){
